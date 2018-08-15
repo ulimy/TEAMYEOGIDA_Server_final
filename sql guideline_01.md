@@ -1,6 +1,6 @@
 ###sql 정리 
+
 	<<<<<<<<로그인>>>>>>>>>>
-	
 	SELECT personpid FROM profile WHERE kakaopid="kakaopid3";
 	// 디비에 없으면
 	INSERT INTO profile(phone,kakaonickname,kakaoPW,email,kakaopid) VALUES(01012345678,"kakaonick","kakaoPW","email","kakaopid");
