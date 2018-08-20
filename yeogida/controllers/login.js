@@ -1,9 +1,20 @@
 var express = require('express');
 var router = express.Router();
 
-var login = require('../models/login');
+var loginModel = require('../models/login');
 
-router.post('/',function(req,res){
+async function findPid(login_info){
+  try{
+    var result=await loginModel.login(login_info);
+
+     console.log(result);
+  }
+  catch(err){
+    return (err);
+  }
+}
+
+router.post('/',  function(req,res,next){
 
   var phone = req.body.phone;
   var kakaonickname = req.body.kakaonickname;
@@ -15,20 +26,12 @@ router.post('/',function(req,res){
 
 
   // models login으로 넘겨주기
-  var personpid = login(login_info);
-  console.log(personpid);
 
-  var _promise = function(login_info){
-    return new Promise(function(resolve,reject){
-      login(login_info);
-    });
-  };
 
-  // 토큰으로 만들어서 응답
-  // var token = jwt.sign(payLoad,secret,options,function(err,token){
-  //   if (err) throw err;
-  //
-  //   });
+  findPid(login_info);
+
+
+
 
 });
 
