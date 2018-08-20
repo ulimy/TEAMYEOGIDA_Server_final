@@ -1,20 +1,20 @@
-var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var logger = require('morgan');
 
 var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-// catch 404 and forward to error handler
-
-//
 
 app.use('/login',require("./controllers/login"));
+app.use('/',require('./controllers/main'));
+app.use('/product',require('./controllers/product'));
+app.use('/choice',require('./controllers/choice'));
+app.use('/serch',require('/controllers/search'));
+app.use('/sold',require('/controllers/sold'));
+app.use('/sell',require('/controllers/sell'));
+
 
 /*
 // error handler
