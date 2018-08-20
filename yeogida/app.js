@@ -11,9 +11,9 @@ app.use('/login',require("./controllers/login"));
 app.use('/',require('./controllers/main'));
 app.use('/product',require('./controllers/product'));
 app.use('/choice',require('./controllers/choice'));
-app.use('/serch',require('/controllers/search'));
-app.use('/sold',require('/controllers/sold'));
-app.use('/sell',require('/controllers/sell'));
+app.use('/search',require('./controllers/search'));
+app.use('/sold',require('./controllers/sold'));
+app.use('/sell',require('./controllers/sell'));
 
 
 /*
