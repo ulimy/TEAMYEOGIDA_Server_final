@@ -16,7 +16,13 @@ router.post('/',function(req,res){
 
   // models login으로 넘겨주기
   var personpid = login(login_info);
-  // console.log(personpid);
+  console.log(personpid);
+
+  var _promise = function(login_info){
+    return new Promise(function(resolve,reject){
+      login(login_info);
+    });
+  };
 
   // 토큰으로 만들어서 응답
   // var token = jwt.sign(payLoad,secret,options,function(err,token){
