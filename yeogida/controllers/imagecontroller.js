@@ -9,7 +9,6 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize('yeogida', 'admin', 'tkrhkdywjd2', {
   host: 'like-lion-yeogida.cvrv62aqsmyx.ap-southeast-1.rds.amazonaws.com',
   dialect: 'mysql',
-});
 
 const ImagePost = sequelize.define('productinfo', {
   productpid: {
