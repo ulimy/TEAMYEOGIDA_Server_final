@@ -1,11 +1,11 @@
 ###sql 정리 
-
         <<<<<<<<로그인>>>>>>>>>>
         SELECT personpid FROM profile WHERE kakaopid="kakaopid3";
-        // 디비에 없으면
-        INSERT INTO profile(phone,kakaonickname,kakaoPW,email,kakaopid) VALUES(01012345678,"kakaonick","kakaoPW","email","kakaopid");
-        INSERT INTO profile(phone,kakaonickname,kakaoPW,email,kakaopid) VALUES(123,"kakaonick2","kakaoPW2","email2","kakaopid2");
-        INSERT INTO profile(phone,kakaonickname,kakaoPW,email,kakaopid) VALUES(456,"kakaonick3","kakaoPW3","email3","kakaopid3");
+	// 디비에 없으면
+	INSERT INTO profile(phone,kakaonickname,token,email,kakaopid) VALUES(01012345678,"kakaonick","token","email","kakaopid");
+	INSERT INTO profile(phone,kakaonickname,token,email,kakaopid) VALUES(123,"kakaonick2","token2","email2","kakaopid2");
+	INSERT INTO profile(phone,kakaonickname,token,email,kakaopid) VALUES(456,"kakaonick3","token3","email3","kakaopid3");
+
 
         SELECT personpid FROM profile WHERE kakaopid="kakaopid3";
         // 디비에 있으면 바로 토큰만들기
@@ -21,23 +21,24 @@
     from productinfo
     where date(productdate_s)>=date(now()) and productaddress like('%%') and checker=0 and productname like('%%')
     order by  b c;
-    ###제품등록
-        <<<<<<<제품등록>>>>>>>>
-    INSERT INTO productinfo(productname,productdate_s,productdate_e,productprice,productimage,personpid,productUrl,formerprice,productaddress_x,productaddress_y,productaddress,text)
-    values("A펜션",20180807,150000,"이미지경로",2,"URL",6000000,19.234,14.254,"경기도","팝니다");
-    values("B펜션",20180807,150000,"이미지경로",1,"URL",6000000,19.234,14.254,"경기도","팝니다");
-    values("C펜션",20180807,150000,"이미지경로",2,"URL",6000000,19.234,14.254,"부산","팝니다");
-    values("D펜션",20180807,150000,"이미지경로",1,"URL",6000000,19.234,14.254,"부산","팝니다");
-    values("E펜션",20180807,150000,"이미지경로",1,"URL",6000000,19.234,14.254,"부산","팝니다");
-    values("F펜션",20180810,150000,"이미지경로",1,"URL",6000000,19.234,14.254,"부산","팝니다");
-    values("G펜션",20180801,150000,"이미지경로",1,"URL",6000000,19.234,14.254,"부산","팝니다");
-    values("H펜션",20180815,150000,"이미지경		 		 로",1,"URL",6000000,19.234,14.254,"부산","팝니다");
+
+
+    <<<<<<<제품등록>>>>>>>>
+    INSERT INTO productinfo(productname,productdate_s,productdate_e,productprice,productimage,productphone,personpid,productUrl,formerprice,productaddress_x,productaddress_y,productaddress,text)
+    values("A펜션",20180807,150000,"이미지경로",01000000000,2,"URL",6000000,19.234,14.254,"경기도","팝니다");
+    values("B펜션",20180807,150000,"이미지경로",01000000000,1,"URL",6000000,19.234,14.254,"경기도","팝니다");
+    values("C펜션",20180807,150000,"이미지경로",01000000000,2,"URL",6000000,19.234,14.254,"부산","팝니다");
+    values("D펜션",20180807,150000,"이미지경로",01000000000,1,"URL",6000000,19.234,14.254,"부산","팝니다");
+    values("E펜션",20180807,150000,"이미지경로",01000000000,1,"URL",6000000,19.234,14.254,"부산","팝니다");
+    values("F펜션",20180810,150000,"이미지경로",01000000000,1,"URL",6000000,19.234,14.254,"부산","팝니다");
+    values("G펜션",20180801,150000,"이미지경로",01000000000,1,"URL",6000000,19.234,14.254,"부산","팝니다");
+    values("H펜션",20180815,150000,"이미지경로",01000000000,1,"URL",6000000,19.234,14.254,"부산","팝니다");
 
 
     <<<<<<<제품수정>>>>>>>>>
     x,y 다시 계산
     UPDATE productinfo
-    set productname=?,productdate_e=?,productdate_s=?,producprice=?,productimage=?,productUrl=?,formerprice=?,productaddress=?,productaddress_x=?,productaddress_y=?,text=?
+    set productname=?,productdate_e=?,productdate_s=?,producprice=?,productimage=?,productphone=?,productUrl=?,formerprice=?,productaddress=?,productaddress_x=?,productaddress_y=?,text=?
     where productpid=?;
 
     <<<<<<<제품 삭제>>>>>>>>>
@@ -63,7 +64,7 @@
     from productinfo
     where productname like ("%종로%") or productaddress like("%종로%");;
 
-    //공유하기
+
 
     <<<<<<<<<찜조회>>>>>>>>
     select productname, formerprice,productprice,productdate_s,productdate_e,productimage from productinfo left outer join productchoice on productpid=choice_productpid group by choice_personpid having choice_personpid=?;
