@@ -16,31 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `profile`
+-- Table structure for table `productsell`
 --
 
-DROP TABLE IF EXISTS `profile`;
+DROP TABLE IF EXISTS `productsell`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `profile` (
-  `personpid` int(11) NOT NULL AUTO_INCREMENT,
-  `phone` int(11) DEFAULT NULL,
-  `kakaonickname` varchar(45) DEFAULT NULL,
-  `kakaoPW` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `kakaopid` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`personpid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+CREATE TABLE `productsell` (
+  `idx` int(11) NOT NULL AUTO_INCREMENT,
+  `seller_personpid` int(11) DEFAULT NULL,
+  `sell_productpid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idx`),
+  KEY `personpid_idx` (`seller_personpid`),
+  KEY `productsell_ibfk_1` (`sell_productpid`),
+  CONSTRAINT `personpid` FOREIGN KEY (`seller_personpid`) REFERENCES `profile` (`personpid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `productsell_ibfk_1` FOREIGN KEY (`sell_productpid`) REFERENCES `productinfo` (`productpid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `profile`
+-- Dumping data for table `productsell`
 --
 
-LOCK TABLES `profile` WRITE;
-/*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-INSERT INTO `profile` VALUES (1,1012345678,'kakaonick','kakaoPW','email','kakaopid'),(2,123,'kakaonick2','kakaoPW2','email2','kakaopid2'),(3,456,'kakaonick3','kakaoPW3','email3','kakaopid3'),(4,45623,'kakaonick4','kakaoPW4','email4','kakaopid4'),(5,315654,'aewtga','asdga','email5','akakkaka');
-/*!40000 ALTER TABLE `profile` ENABLE KEYS */;
+LOCK TABLES `productsell` WRITE;
+/*!40000 ALTER TABLE `productsell` DISABLE KEYS */;
+/*!40000 ALTER TABLE `productsell` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-15 13:54:38
+-- Dump completed on 2018-08-20 14:50:40
