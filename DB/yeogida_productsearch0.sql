@@ -16,31 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `productsold`
+-- Table structure for table `productsearch`
 --
 
-DROP TABLE IF EXISTS `productsold`;
+DROP TABLE IF EXISTS `productsearch`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `productsold` (
+CREATE TABLE `productsearch` (
   `idx` int(11) NOT NULL AUTO_INCREMENT,
-  `buyer_personpid` int(11) DEFAULT NULL,
-  `sold_productpid` int(11) DEFAULT NULL,
+  `search_personpid` int(11) DEFAULT NULL,
+  `search_productpid` int(11) DEFAULT NULL,
   PRIMARY KEY (`idx`),
-  KEY `fk_personpid_idx` (`buyer_personpid`),
-  KEY `fk_productpid_idx` (`sold_productpid`),
-  CONSTRAINT `fk_personpid` FOREIGN KEY (`buyer_personpid`) REFERENCES `profile` (`personpid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_productpid` FOREIGN KEY (`sold_productpid`) REFERENCES `productinfo` (`productpid`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `productsearch_ibfk_1` (`search_productpid`),
+  KEY `productsearch_ibfk_2` (`search_personpid`),
+  CONSTRAINT `productsearch_ibfk_1` FOREIGN KEY (`search_productpid`) REFERENCES `productinfo` (`productpid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `productsearch_ibfk_2` FOREIGN KEY (`search_personpid`) REFERENCES `profile` (`personpid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `productsold`
+-- Dumping data for table `productsearch`
 --
 
-LOCK TABLES `productsold` WRITE;
-/*!40000 ALTER TABLE `productsold` DISABLE KEYS */;
-/*!40000 ALTER TABLE `productsold` ENABLE KEYS */;
+LOCK TABLES `productsearch` WRITE;
+/*!40000 ALTER TABLE `productsearch` DISABLE KEYS */;
+/*!40000 ALTER TABLE `productsearch` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-15 13:54:39
+-- Dump completed on 2018-08-20 14:50:39

@@ -16,31 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `productsearch`
+-- Table structure for table `profile`
 --
 
-DROP TABLE IF EXISTS `productsearch`;
+DROP TABLE IF EXISTS `profile`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `productsearch` (
-  `idx` int(11) NOT NULL AUTO_INCREMENT,
-  `search_personpid` int(11) DEFAULT NULL,
-  `search_productpid` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idx`),
-  KEY `productsearch_ibfk_1` (`search_productpid`),
-  KEY `productsearch_ibfk_2` (`search_personpid`),
-  CONSTRAINT `productsearch_ibfk_1` FOREIGN KEY (`search_productpid`) REFERENCES `productinfo` (`productpid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `productsearch_ibfk_2` FOREIGN KEY (`search_personpid`) REFERENCES `profile` (`personpid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `profile` (
+  `personpid` int(11) NOT NULL AUTO_INCREMENT,
+  `phone` int(11) DEFAULT NULL,
+  `kakaonickname` varchar(45) DEFAULT NULL,
+  `token` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `kakaopid` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`personpid`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `productsearch`
+-- Dumping data for table `profile`
 --
 
-LOCK TABLES `productsearch` WRITE;
-/*!40000 ALTER TABLE `productsearch` DISABLE KEYS */;
-/*!40000 ALTER TABLE `productsearch` ENABLE KEYS */;
+LOCK TABLES `profile` WRITE;
+/*!40000 ALTER TABLE `profile` DISABLE KEYS */;
+INSERT INTO `profile` VALUES (1,1012345678,'kakaonick','kakaoPW','email','kakaopid'),(2,123,'kakaonick2','kakaoPW2','email2','kakaopid2'),(3,456,'kakaonick3','kakaoPW3','email3','kakaopid3'),(4,45623,'kakaonick4','kakaoPW4','email4','kakaopid4'),(5,315654,'aewtga','asdga','email5','akakkaka'),(6,43253,'asdf','asddfhgfaga','fkjj','akakkfghkhgjaka'),(7,542345,'bgfdh','sht','fhjou','syu'),(8,8568,'ahdtgf','retz','dgf','iuk'),(9,45,'ret','jk','tyu','ftyurs'),(10,45,'ret','jk','tyu','rdzjckhgdfsds'),(11,45,'ret','jk','tyu','dfffgghkjlk'),(12,45,'ret','jk','tyu','fnbvb');
+/*!40000 ALTER TABLE `profile` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-15 13:54:40
+-- Dump completed on 2018-08-20 14:50:38

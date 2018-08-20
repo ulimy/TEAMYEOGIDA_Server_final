@@ -16,31 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `productsell`
+-- Table structure for table `productsold`
 --
 
-DROP TABLE IF EXISTS `productsell`;
+DROP TABLE IF EXISTS `productsold`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `productsell` (
+CREATE TABLE `productsold` (
   `idx` int(11) NOT NULL AUTO_INCREMENT,
-  `seller_personpid` int(11) DEFAULT NULL,
-  `sell_productpid` int(11) DEFAULT NULL,
+  `buyer_personpid` int(11) DEFAULT NULL,
+  `sold_productpid` int(11) DEFAULT NULL,
   PRIMARY KEY (`idx`),
-  KEY `personpid_idx` (`seller_personpid`),
-  KEY `productsell_ibfk_1` (`sell_productpid`),
-  CONSTRAINT `personpid` FOREIGN KEY (`seller_personpid`) REFERENCES `profile` (`personpid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `productsell_ibfk_1` FOREIGN KEY (`sell_productpid`) REFERENCES `productinfo` (`productpid`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_personpid_idx` (`buyer_personpid`),
+  KEY `fk_productpid_idx` (`sold_productpid`),
+  CONSTRAINT `fk_personpid` FOREIGN KEY (`buyer_personpid`) REFERENCES `profile` (`personpid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_productpid` FOREIGN KEY (`sold_productpid`) REFERENCES `productinfo` (`productpid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `productsell`
+-- Dumping data for table `productsold`
 --
 
-LOCK TABLES `productsell` WRITE;
-/*!40000 ALTER TABLE `productsell` DISABLE KEYS */;
-/*!40000 ALTER TABLE `productsell` ENABLE KEYS */;
+LOCK TABLES `productsold` WRITE;
+/*!40000 ALTER TABLE `productsold` DISABLE KEYS */;
+/*!40000 ALTER TABLE `productsold` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-15 13:54:41
+-- Dump completed on 2018-08-20 14:50:39
