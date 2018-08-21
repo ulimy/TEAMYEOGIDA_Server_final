@@ -20,14 +20,19 @@ router.post('/info',function(req,res){
 
 // 제품 등록
 router.post('/register',function(req,res){
-  console.log("who get");
   var registerModel = require('../models/product_register');
   var map=require('../api/map_api');
   var register_info=req.body;
-  console.log(register_info);
-  map.getPoint(register_info.productaddress).then(function(point){
-    registerModel.register(register_info,point[0],point[1]);
 
+  // 좌표값 변환하여 productinfo 에 저장
+  map.getPoint(register_info.productaddress).then(function(point){
+    register_info.productaddress_x = point[0];
+    register_info.productaddress_y = point[1];
+    registerModel.register(register_info)
+      .then(data=>{
+        // productsell에 추가
+        registerModel.insert_sell(data);
+      });
   });
 
 });
