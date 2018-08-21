@@ -5,7 +5,7 @@ exports.register=(register_info,pointX,pointY)=> productinfo.create({
 
   productaddress_x :pointX,
   productaddress_y :pointY,
-  productUrl:register_info.url,
+  productUrl:register_info.productUrl,
   productname: register_info.productname,
   productimage: "drop",
   productdate_s: register_info.productdate_s,
