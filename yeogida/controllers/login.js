@@ -1,35 +1,33 @@
 var express = require('express');
 var router = express.Router();
+var jwt = require('jsonwebtoken');
 
-var login = require('../models/login');
+var loginModel = require('../models/login');
 
-router.post('/',function(req,res){
+router.post('/',  function(req,res,next){
 
-  var phone = req.body.phone;
-  var kakaonickname = req.body.kakaonickname;
-  var kakaoPW = req.body.kakaoPW;
-  var email = req.body.email;
-  var kakaopid = req.body.kakaopid;
+  // 로그인 정보 받아오기
+  var login_info = req.body;
 
-  var login_info = [phone,kakaonickname,kakaoPW,email,kakaopid];
-
-
-  // models login으로 넘겨주기
-  var personpid = login(login_info);
-  console.log(personpid);
-
-  var _promise = function(login_info){
-    return new Promise(function(resolve,reject){
-      login(login_info);
-    });
-  };
-
-  // 토큰으로 만들어서 응답
-  // var token = jwt.sign(payLoad,secret,options,function(err,token){
-  //   if (err) throw err;
-  //
-  //   });
-
+  // 로그인정보 저장하고 personpid 가져오기
+  loginModel.login(login_info)
+    .then(data=>{
+      return data.personpid;
+    })
+    .then(personpid=>{
+      // 토큰 생성
+      var secret = 'yeogida';
+      var payLoad  = {personpid : personpid};
+      var options = { algorithm : 'HS256'};
+      var token = jwt.sign(payLoad,secret,options,function(err,token){
+       if (err) throw err;
+       // 생성한 토큰 저장
+       loginModel.savetoken(personpid,token);
+     });
+     res.json({
+       personpid : personpid
+     });
+   });
 });
 
 
