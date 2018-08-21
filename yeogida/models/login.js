@@ -1,5 +1,5 @@
 //넘겨받은 json에서 userpid 검색
-var profile = require("../config");
+var profile = require("../config").profile;
 //var mysql= require("mysql");
 
 exports.login = (login_info) => profile.findOrCreate({
