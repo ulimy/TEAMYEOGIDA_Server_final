@@ -46,8 +46,12 @@ router.post('/update',function(req,res){
   });
 });
 
-router.post('/delete',function(req,res){
-  var deleted = require('../models/product_delete');
+router.get('/delete',function(req,res){
+  var deletedModel = require('../models/product_delete');
+  var productpid=req.query.productpid;
+  deletedModel.delete(productpid);
+
+
 });
 
 router.post('/complete',function(req,res){
