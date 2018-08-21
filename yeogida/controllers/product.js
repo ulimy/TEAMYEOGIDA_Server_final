@@ -25,7 +25,7 @@ router.get('/info',function(req,res){
 
 router.post('/register',function(req,res){
   var registerModel = require('../models/product_register');
-  var map=require('./map_api');
+  var map=require('../api/map_api');
   var register_info=req.body;
   map.getPoint(register_info.productaddress).then(function(point){
 
@@ -37,7 +37,7 @@ router.post('/register',function(req,res){
 
 router.post('/update',function(req,res){
   var updateModel = require('../models/product_update');
-  var map=require('./map_api');
+  var map=require('../api/map_api');
   var update_info=req.body;
   map.getPoint(update_info.productaddress).then(function(point){
 
