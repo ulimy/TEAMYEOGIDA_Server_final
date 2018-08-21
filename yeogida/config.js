@@ -5,7 +5,6 @@ var sequelize = new Sequelize('yeogida','moonsun','201611070',
     'dialect' : 'mysql'
   }
 );
-
 var profile=sequelize.define('profile',{
   personpid: {
     type:Sequelize.INTEGER,
@@ -22,6 +21,36 @@ var profile=sequelize.define('profile',{
   tableName: profile
 });
 
-profile.sync();
+var productinfo=sequelize.define('productinfo', {
+  productpid: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+  },
+  url: Sequelize.STRING, //사진이미지 경로텍스트
+  productname: Sequelize.STRING, //판매 펜션이름
+  productaddress_x : Sequelize.FLOAT,// 주소 x좌표
+  productaddress_y : Sequelize.FLOAT,
+  productUrl: Sequelize.STRING,
+  productdate_s: Sequelize.DATE,
+  productdate_e: Sequelize.DATE,
+  productaddress : Sequelize.STRING,
+  formerprice: Sequelize.INTEGER,
+  productprice :Sequelize.INTEGER,
+  producthit: Sequelize.INTEGER,
+  checker : Sequelize.BOOLEAN,
+  personpid: Sequelize.INTEGER
+  //hotelphonenumber: Sequelize.STRING//펜션전번
+}, {
+    timestamps:false,
+    tableName:productinfo
 
-module.exports = profile;
+//  description: Sequelize.TEXT,사용자 텍스트
+});
+profile.sync();
+productinfo.sync();
+
+module.exports={
+  profile:profile,
+  productinfo :productinfo,
+};
