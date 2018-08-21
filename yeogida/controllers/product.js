@@ -42,10 +42,13 @@ router.post('/update',function(req,res){
   var updateModel = require('../models/product_update');
   var map=require('../api/map_api');
   var update_info=req.body;
+  // 좌표값 변환하여 productinfo 에 저장
   map.getPoint(update_info.productaddress).then(function(point){
-
-    updateModel.update(update_info,point[0],point[1]);
-
+    update_info.productaddress_x = point[0];
+    update_info.productaddress_y = point[1];
+    var productpid = update_info.productpid;
+    delete update_info.productpid;
+    updateModel.update(update_info,productpid);
   });
 });
 

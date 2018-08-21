@@ -44,12 +44,9 @@ var productinfo=sequelize.define('productinfo', {
   text:Sequelize.TEXT,
   productphone:Sequelize.INTEGER,
 
-  //hotelphonenumber: Sequelize.STRING//펜션전번
 }, {
     timestamps:false,
     tableName:productinfo
-
-//  description: Sequelize.TEXT,사용자 텍스트
 });
 
 var productchoice=sequelize.define('productchoice', {
