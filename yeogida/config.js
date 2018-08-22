@@ -100,6 +100,10 @@ var productsell=sequelize.define('productsell', {
   seller_personpid : {
     type: Sequelize.INTEGER,
     references : profile.personpid
+  },
+  ckecker : {
+    type: Sequelize.BOOLEAN,
+    references : productinfo.checker
   }
 },{
   timestamps : false,
