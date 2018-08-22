@@ -1,22 +1,9 @@
 var Sequelize = require('Sequelize');
-// var sequelize = new Sequelize('yeogida','root','jihae',
-//   {
-//     // 'host' : 'yeogida.cbdgg8cil0ro.ap-southeast-1.rds.amazonaws.com',
-//     host: 'localhost',
-//     dialect: 'mysql'
-//   }
-// );
+
 var sequelize = new Sequelize('yeogida','moonsun','201611070',
   {
     'host' : 'yeogida.cbdgg8cil0ro.ap-southeast-1.rds.amazonaws.com',
-    'dialect' : 'mysql',
-    'pool': {
-      max: 5,
-      min: 0,
-      idle: 20000,
-      acquire: 20000,
-      maxIdleTime: 120000
-}
+    'dialect' : 'mysql'
 });
 
 var profile=sequelize.define('profile',{
@@ -57,17 +44,105 @@ var productinfo=sequelize.define('productinfo', {
   text:Sequelize.TEXT,
   productphone:Sequelize.INTEGER,
 
-  //hotelphonenumber: Sequelize.STRING//펜션전번
 }, {
     timestamps:false,
     tableName:productinfo
-
-//  description: Sequelize.TEXT,사용자 텍스트
 });
+
+var productchoice=sequelize.define('productchoice', {
+  idx : {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  choice_productpid : {
+    type: Sequelize.INTEGER,
+    references : productinfo.productpid
+  },
+  choice_personpid : {
+    type: Sequelize.INTEGER,
+    references : profile.personpid
+  }
+},{
+  timestamps : false,
+  tableName : productchoice
+});
+
+var productsearch=sequelize.define('productsearch', {
+  idx : {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  search_productpid : {
+    type: Sequelize.INTEGER,
+    references : productinfo.productpid
+  },
+  search_personpid : {
+    type: Sequelize.INTEGER,
+    references : profile.personpid
+  }
+},{
+  timestamps : false,
+  tableName : productsearch
+});
+
+var productsell=sequelize.define('productsell', {
+  idx : {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  sell_productpid : {
+    type: Sequelize.INTEGER,
+    references : productinfo.productpid
+  },
+  seller_personpid : {
+    type: Sequelize.INTEGER,
+    references : profile.personpid
+  },
+  ckecker : {
+    type: Sequelize.BOOLEAN
+  }
+},{
+  timestamps : false,
+  tableName : productsell
+});
+
+var productsold=sequelize.define('productsold', {
+  idx : {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  sold_productpid : {
+    type: Sequelize.INTEGER,
+    references : productinfo.productpid
+  },
+  buyer_personpid : {
+    type: Sequelize.INTEGER,
+    references : profile.personpid
+  }
+},{
+  timestamps : false,
+  tableName : productsold
+});
+
+
+
 profile.sync();
 productinfo.sync();
+productinfo.sync();
+productchoice.sync();
+productsearch.sync();
+productsell.sync();
+productsold.sync();
 
 module.exports={
   profile:profile,
   productinfo :productinfo,
+  productchoice : productchoice,
+  productsearch : productsearch,
+  productsell : productsell,
+  productsold : productsold
 };
