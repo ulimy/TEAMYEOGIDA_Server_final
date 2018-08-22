@@ -5,9 +5,12 @@ var client_secret = '';
 var request = require('request');
 var multer = require('multer');
 var upload = multer();
-
+var imagez="";
+var imageCtrl=require('../api/image');
 // 제품 상세조회
 router.post('/info',upload.fields([]),function(req,res){
+
+
   var infoModel = require('../models/product_info');
   // 최근 본 상품 추가
   infoModel.insert_search(req.body);
@@ -21,20 +24,29 @@ router.post('/info',upload.fields([]),function(req,res){
 });
 
 // 제품 등록
-router.post('/register',upload.fields([]),function(req,res){
+router.post('/register',imageCtrl.uploadSingle,function(req,res){
+
+  var register_info=req.body;
+//console.log(req.body);
+  imagez=req.file.location;
+
+  console.log(imagez);
+
+  register_info.productimage = imagez;
+
   var registerModel = require('../models/product_register');
   var map=require('../api/map_api');
-  var register_info=req.body;
 
   // 좌표값 변환하여 productinfo 에 저장
   map.getPoint(register_info.productaddress).then(function(point){
     register_info.productaddress_x = point[0];
     register_info.productaddress_y = point[1];
-    registerModel.register(register_info)
-      .then(data=>{
-        // productsell에 추가
-        registerModel.insert_sell(data);
-      });
+    console.log(register_info);
+    // registerModel.register(register_info)
+    //   .then(data=>{
+    //     // productsell에 추가
+    //     registerModel.insert_sell(data);
+    //   });
   });
 
 });
@@ -64,7 +76,7 @@ router.get('/delete',upload.fields([]),function(req,res){
 // 구매 확정
 router.post('/complete',upload.fields([]),function(req,res){
   var completeModel = require('../models/product_complete');
-  
+
 });
 
 module.exports = router;
