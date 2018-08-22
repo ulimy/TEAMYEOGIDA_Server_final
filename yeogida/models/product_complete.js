@@ -1,5 +1,12 @@
 var productinfo=require('../config').productinfo;
 var productsell=require('../config').productsell;
+var productsold=require('../config').productsold;
 
+// productinfo update
+exports.update_info = (productpid) => productinfo.update({checker:true},{where : {productpid : productpid}});
 
-exports.update_info = (productpid) => productinfo.update({check:1},{where : {productpid : productpid}});
+//productsell update
+exports.update_sell = (productpid) => productsell.update({checker:true},{where : {sell_productpid : productpid}}).then((err)=>{ if(err) console.error(err)});
+
+//insert sold
+exports.insert_sold = (productpid,personpid) => productsold.findOrCreate({where : {buyer_personpid:personpid,sold_productpid:productpid}});
