@@ -102,8 +102,7 @@ var productsell=sequelize.define('productsell', {
     references : profile.personpid
   },
   ckecker : {
-    type: Sequelize.BOOLEAN,
-    references : productinfo.checker
+    type: Sequelize.BOOLEAN
   }
 },{
   timestamps : false,

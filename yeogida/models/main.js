@@ -23,7 +23,7 @@ exports.main = (sortinfo)=>{
   }
 
   var select = db.findAll({
-      attributes : ['productpid', 'productname', 'formerprice', 'productprice', 'productdate_s', 'productdate_e','productimage','producthit'],
+      attributes : ['productpid', 'productname', 'formerprice', 'productprice', 'productdate_s', 'productdate_e','productimage'],
       where : {
         // 사용기한이 지나지 않은 상품들만 노출
         productdate_s : {gt : new Date()},
