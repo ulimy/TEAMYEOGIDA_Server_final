@@ -1,5 +1,5 @@
-var productinfo=require('../config').productinfo;
-var productsearch = require('../config').productsearch;
+var productinfo=require('../config/database').productinfo;
+var productsearch = require('../config/database').productsearch;
 
 // 제품 정보 돌려주기
 exports.info=(productpid)=> productinfo.findAll({
