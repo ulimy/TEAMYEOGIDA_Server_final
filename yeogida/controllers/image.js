@@ -1,7 +1,7 @@
 var aws = require('aws-sdk');
 var multer = require('multer');
 var multerS3=require('multer-s3');
-aws.config.loadFromPath('./config/awsconfig.json');
+aws.config.loadFromPath('./awsconfig.json');
 var s3 = new aws.S3();
 var storageS3 = multerS3({
   s3: s3,
