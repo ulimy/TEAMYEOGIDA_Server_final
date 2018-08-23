@@ -27,7 +27,6 @@ router.post('/info',upload.fields([]),function(req,res){
 router.post('/register',imageCtrl.uploadSingle,function(req,res){
 
   var register_info=req.body;
-//console.log(req.body);
   imagez=req.file.location;
 
   console.log(imagez);
@@ -42,11 +41,11 @@ router.post('/register',imageCtrl.uploadSingle,function(req,res){
     register_info.productaddress_x = point[0];
     register_info.productaddress_y = point[1];
     console.log(register_info);
-    // registerModel.register(register_info)
-    //   .then(data=>{
-    //     // productsell에 추가
-    //     registerModel.insert_sell(data);
-    //   });
+    registerModel.register(register_info)
+      .then(data=>{
+        // productsell에 추가
+        registerModel.insert_sell(data);
+      });
   });
 
 });
