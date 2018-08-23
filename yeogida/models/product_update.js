@@ -1,5 +1,4 @@
-
-var productinfo=require('../config').productinfo;
+var productinfo=require('../config/database').productinfo;
 
 exports.update=(update_info,productpid)=> productinfo.update(update_info,
   {where:{'productpid':productpid}}
