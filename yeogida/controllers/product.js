@@ -5,8 +5,9 @@ var client_secret = '';
 var request = require('request');
 var multer = require('multer');
 var upload = multer();
-var imagez="";
-var imageCtrl=require('../api/image');
+
+var imageCtrl=require('./image');
+var imagez='';
 // 제품 상세조회
 router.post('/info',upload.fields([]),function(req,res){
 
@@ -28,9 +29,7 @@ router.post('/register',imageCtrl.uploadSingle,function(req,res){
 
   var register_info=req.body;
   imagez=req.file.location;
-
   console.log(imagez);
-
   register_info.productimage = imagez;
 
   var registerModel = require('../models/product_register');
@@ -42,7 +41,7 @@ router.post('/register',imageCtrl.uploadSingle,function(req,res){
     register_info.productaddress_y = point[1];
     console.log(register_info);
     registerModel.register(register_info)
-      .then(data=>{
+      .then((data)=>{
         // productsell에 추가
         registerModel.insert_sell(data);
       });
@@ -51,11 +50,18 @@ router.post('/register',imageCtrl.uploadSingle,function(req,res){
 });
 
 // 제품 수정
-router.post('/update',upload.fields([]),function(req,res){
+router.post('/update',imageCtrl.uploadSingle,function(req,res){
+  var update_info=req.body;
+  imagez=req.file.location;
+  console.log(imagez);
+  console.log(update_info);
+  console.log(update_info.productimage);
+
+  update_info.productimage = imagez;
   var updateModel = require('../models/product_update');
   var map=require('../api/map_api');
-  var update_info=req.body;
-  console.log(update_info.productaddress);
+
+  //console.log(update_info);
   // 좌표값 변환하여 productinfo 에 저장
   map.getPoint(update_info.productaddress).then(function(point){
     update_info.productaddress_x = point[0];

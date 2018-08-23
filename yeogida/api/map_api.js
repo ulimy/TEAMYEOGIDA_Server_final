@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var client_id = '_KCAgzwvJUK48fsicvgj';
-var client_secret = '';
-var request = require('');
+
+var client_secret = 'v7WbCJgG75';
+var request = require('request');
 
 exports.getPoint=(adr)=> {
   return new Promise(function(resolve,reject){
