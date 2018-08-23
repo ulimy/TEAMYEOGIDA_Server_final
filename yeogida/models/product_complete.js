@@ -1,6 +1,6 @@
-var productinfo=require('../config').productinfo;
-var productsell=require('../config').productsell;
-var productsold=require('../config').productsold;
+var productinfo=require('../config/database').productinfo;
+var productsell=require('../config/database').productsell;
+var productsold=require('../config/database').productsold;
 
 // productinfo update
 exports.update_info = (productpid) => productinfo.update({checker:true},{where : {productpid : productpid}});

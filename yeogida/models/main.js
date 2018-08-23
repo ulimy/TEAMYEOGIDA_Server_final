@@ -1,5 +1,4 @@
-var db = require("../config").productinfo;
-var mysql= require("mysql");
+var db = require("../config/database").productinfo;
 
 exports.main = (sortinfo)=>{
   // 지역

@@ -1,5 +1,5 @@
-var productchoice=require('../config').productchoice;
-var db = require("../config").productinfo;
+var productchoice=require('../config/database').productchoice;
+var db = require("../config/database").productinfo;
 
 //찜한 상품 리스트 보여주기
 //db랑 productchoice join하기

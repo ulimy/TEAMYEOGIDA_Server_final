@@ -1,6 +1,5 @@
-
-var productinfo=require('../config').productinfo;
-var productsell=require('../config').productsell;
+var productinfo=require('../config/database').productinfo;
+var productsell=require('../config/database').productsell;
 
 exports.register=(register_info) => productinfo.findOrCreate({
   where : register_info
