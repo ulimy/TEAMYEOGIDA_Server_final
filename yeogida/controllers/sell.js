@@ -6,16 +6,18 @@ var upload = multer();
 // 내상품
 router.post('/mysell_info',upload.fields([]),function(req,res){
   var mysellModel = require("../models/sell_mysell_info");
+
   mysellModel.info(req.body.personpid).then((data)=>{
-    console.log(data);
+    res.json(data);
   });
 });
 
 //판매내역
 router.post('/sold_info',upload.fields([]),function(req,res){
   var soldModel = require("../models/sell_sold_info");
+
   soldModel.info(req.body.personpid).then((data)=>{
-    console.log(data);
+    res.json(data);
   });
 });
 

@@ -1,4 +1,4 @@
-var db = require("../config/database").productinfo;
+var productinfo = require("../config/database").productinfo;
 
 exports.main = (sortinfo)=>{
   // 지역
@@ -21,7 +21,7 @@ exports.main = (sortinfo)=>{
       break;
   }
 
-  var select = db.findAll({
+  var select = productinfo.findAll({
       attributes : ['productpid', 'productname', 'formerprice', 'productprice', 'productdate_s', 'productdate_e','productimage'],
       where : {
         // 사용기한이 지나지 않은 상품들만 노출
