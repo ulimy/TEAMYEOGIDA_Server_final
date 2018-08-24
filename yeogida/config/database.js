@@ -132,7 +132,6 @@ var productpurchase=sequelize.define('productpurchase', {
 
 profile.sync();
 productinfo.sync();
-productinfo.sync();
 productchoice.sync();
 productsearch.sync();
 productsell.sync();
