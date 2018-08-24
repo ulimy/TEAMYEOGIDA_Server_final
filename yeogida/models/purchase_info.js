@@ -5,10 +5,10 @@ var productinfo=require('../config/database').productinfo;
 productpurchase.belongsTo(db,{targetKey:'productpid',foreignKey:'sold_productpid'});
 
 exports.info=(buyer_personpid)=>productpurchase.findAll({
-  attributes:{exclude:['idx','buyer_personpid','sold_productpid']},
+  attributes:{exclude:['buyer_personpid','sold_productpid']},
   include:{
     model : productinfo,
-    attribute :{exclude:[ "idx","producthit","productphone","checker","personpid"]},
+    attribute :['productpid', 'productname', 'formerprice', 'productprice', 'productdate_s', 'productdate_e','productimage',' productaddress'],
     where: {personpid : buyer_personpid}
   }
 }).then((data)=>{
