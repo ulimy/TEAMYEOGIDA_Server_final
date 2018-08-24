@@ -20,15 +20,18 @@ router.post('/info',upload.fields([]),function(req,res){
 router.post('/register',upload.fields([]),function(req,res){
   var registerModel = require('../models/choice_register');
   var register_info=req.body;
-  registerModel.register(register_info);
-  res.json({message:"success"});
+  registerModel.register(register_info).then(()=>{
+    res.json({message:"success"});
+  });
 });
 
 //찜한 상품 productchoice에서 삭제하기
 router.post('/delete',upload.fields([]),function(req,res){
   var deletedModel = require('../models/choice_delete');
   var deleted_info=req.body;
-  deletedModel.delete(deleted_info);
+  deletedModel.delete(deleted_info).then(()=>{
+    res.json({message:"success"});
+  });
 });
 
 module.exports = router;
