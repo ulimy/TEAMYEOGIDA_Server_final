@@ -87,7 +87,7 @@ router.post('/complete',upload.fields([]),function(req,res){
 
   completeModel.update_info(productpid);
   completeModel.update_sell(productpid);
-  completeModel.insert_sold(productpid,perosnpid);
+  completeModel.insert_purchase(productpid,personpid);
 
   res.json({message:'success'});
 });
