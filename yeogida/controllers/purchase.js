@@ -6,7 +6,7 @@ var upload=multer();
 // 구매내역
 router.post('/info',upload.fields([]),function(req,res){
   var purchaseinfoModel = require('../models/purchase_info');
-  var personpid=req.body.personpid;
+  var personpid=req.body.buyer_personpid;
 
   purchaseinfoModel.info(personpid)
   .then((data)=>{

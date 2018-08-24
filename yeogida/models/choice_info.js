@@ -5,7 +5,7 @@ var db = require('../config/database').productinfo;
 //db랑 productchoice join하기
 db.belongsTo(productchoice, {targetKey:'choice_productpid',foreignKey: 'productpid'});
 exports.info=(personpid) =>db.findAll({
-  attributes : ['productpid', 'productname', 'formerprice', 'productprice', 'productdate_s', 'productdate_e','productimage',' productaddress'],
+  attributes : ['productpid', 'productname', 'formerprice', 'productprice', 'productdate_s', 'productdate_e','productimage','productaddress'],
   where:{
     //사용 기한 지나지 않은 찜한 상품만 노출
     productdate_s :{gt: new Date()},

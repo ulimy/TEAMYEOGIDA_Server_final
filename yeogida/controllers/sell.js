@@ -7,7 +7,7 @@ var upload = multer();
 router.post('/mysell_info',upload.fields([]),function(req,res){
   var mysellModel = require("../models/sell_mysell_info");
 
-  mysellModel.info(req.body.personpid).then((data)=>{
+  mysellModel.info(req.body.seller_personpid).then((data)=>{
     res.json(data);
   });
 });
@@ -16,7 +16,7 @@ router.post('/mysell_info',upload.fields([]),function(req,res){
 router.post('/sold_info',upload.fields([]),function(req,res){
   var soldModel = require("../models/sell_sold_info");
 
-  soldModel.info(req.body.personpid).then((data)=>{
+  soldModel.info(req.body.seller_personpid).then((data)=>{
     res.json(data);
   });
 });
