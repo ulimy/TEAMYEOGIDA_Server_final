@@ -4,10 +4,10 @@ var multer = require('multer');
 var upload = multer();
 
 //찜한 상품 리스트 보여주기(판매된거,이미 기한 지난건 x)
-router.get('/info',function(req,res){
+router.post('/info',upload.fields([]),function(req,res){
   var infoModel = require('../models/choice_info');
-
-  infoModel.info(req.query.personpid)
+  var personpid=req.body.choice_personpid;
+  infoModel.info(personpid)
     .then((data)=>{
       res.json(data);
     }).then((err)=>{
