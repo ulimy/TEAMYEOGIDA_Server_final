@@ -4,7 +4,7 @@ var jwt = require('jsonwebtoken');
 var multer = require('multer');
 var upload = multer();
 
-router.post('/',upload.fields([]),function(req,res,next){
+router.post('/',function(req,res,next){
   var loginModel = require('../models/login');
 
   // 로그인 정보 받아오기

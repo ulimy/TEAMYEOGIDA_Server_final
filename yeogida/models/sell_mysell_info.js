@@ -3,8 +3,7 @@ var productinfo = require('../config/database').productinfo;
 
 productinfo.belongsTo(productsell, {targetKey:'sell_productpid',foreignKey: 'productpid'});
 exports.info=(personpid) =>productinfo.findAll({
-    attributes : {exclude:["producthit","productphone","checker","personpid"],
-  },
+    attributes : ['productpid', 'productname', 'formerprice', 'productprice', 'productdate_s', 'productdate_e','productimage',' productaddress'],
   where:{
       //사용 기한 지나지 않은 상품만 노출
       productdate_s :{gt: new Date()},
