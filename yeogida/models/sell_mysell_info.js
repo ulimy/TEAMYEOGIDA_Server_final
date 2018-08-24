@@ -11,7 +11,7 @@ exports.info=(personpid) =>productinfo.findAll({
       //판매되지 않은 찜한 상품만 노출
       checker:0
   },
-    //join의 조건
+  //join의 조건
   include : {
     model: productsell,
     attributes : {exclude:["idx","sell_productpid","seller_personpid","checker"]},

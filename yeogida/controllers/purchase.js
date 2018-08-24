@@ -7,6 +7,7 @@ var upload=multer();
 router.post('/info',upload.fields([]),function(req,res){
   var purchaseinfoModel = require('../models/purchase_info');
   var personpid=req.body.personpid;
+
   purchaseinfoModel.info(personpid)
   .then((data)=>{
       res.json(data);
