@@ -19,7 +19,7 @@ router.post('/info',upload.fields([]),function(req,res){
   infoModel.hit(req.body.productpid);
   // 제품 정보 돌려주기
   infoModel.info(req.body.productpid)
-  .then(data=>{
+  .then((data)=>{
     res.json(data);
   });
 });
