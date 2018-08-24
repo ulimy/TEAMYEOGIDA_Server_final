@@ -21,7 +21,7 @@ router.post('/register',upload.fields([]),function(req,res){
   var registerModel = require('../models/choice_register');
   var register_info=req.body;
   registerModel.register(register_info);
-
+  res.json({message:"success"});
 });
 
 //찜한 상품 productchoice에서 삭제하기
