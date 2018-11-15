@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var mainModel = require('../models/main');
-
 router.get('/',function(req,res){
+  var mainModel = require('../models/main');
 
   mainModel.main(req.query)
     .then((data)=>{

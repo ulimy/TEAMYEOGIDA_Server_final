@@ -101,7 +101,7 @@ var productsell=sequelize.define('productsell', {
     type: Sequelize.INTEGER,
     references : profile.personpid
   },
-  ckecker : {
+  checker : {
     type: Sequelize.BOOLEAN
   }
 },{
@@ -131,7 +131,6 @@ var productpurchase=sequelize.define('productpurchase', {
 
 
 profile.sync();
-productinfo.sync();
 productinfo.sync();
 productchoice.sync();
 productsearch.sync();
