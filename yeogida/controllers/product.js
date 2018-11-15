@@ -37,7 +37,7 @@ router.post('/register',imageCtrl.uploadSingle,function(req,res){
   map.getPoint(register_info.productaddress).then(function(point){
     register_info.productaddress_x = point[0];
     register_info.productaddress_y = point[1];
-
+    console.log(register_info);
     registerModel.register(register_info)
       .then((data)=>{
         // productsell에 추가
