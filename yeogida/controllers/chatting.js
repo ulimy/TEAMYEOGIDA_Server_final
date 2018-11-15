@@ -18,3 +18,8 @@ router.post('/chat_message',upload.fields([]),function(req,res){
   var message  = require('../models/message');
   var chatinfo = require('../models/chat_info');
 });
+
+// 채팅 목록 조회
+router.post('/chat_list',upload.fields([]),function(req,res){
+  var chat_list = require('../models/chat_list');
+});
