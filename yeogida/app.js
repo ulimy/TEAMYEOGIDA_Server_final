@@ -14,6 +14,7 @@ app.use('/choice',require('./controllers/choice'));
 app.use('/search',require('./controllers/search'));
 app.use('/purchase',require('./controllers/purchase'));
 app.use('/sell',require('./controllers/sell'));
+app.use('/chat',require('./controllers/chatting'));
 
 
 /*
