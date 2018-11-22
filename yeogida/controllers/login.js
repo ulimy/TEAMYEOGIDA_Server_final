@@ -1,14 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
-var multer = require('multer');
-var upload = multer();
+// var multer = require('multer');
+// var upload = multer();
 
-router.post('/',upload.fields([]),function(req,res,next){
+router.post('/',function(req,res,next){
   var loginModel = require('../models/login');
 
+  console.log("post in");
+
   // 로그인 정보 받아오기
-  var login_info = req.body;
+  var login_info = req.query;
 
   // 로그인정보 저장하고 personpid 가져오기
   loginModel.login(login_info)
