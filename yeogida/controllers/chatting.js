@@ -3,8 +3,6 @@ var router = express.Router();
 var multer=require("multer");
 var upload=multer();
 
-// test
-
 // 채팅방 생성 및 채팅 내용 조회
 router.post('/',upload.fields([]),function(req,res){
   var chatting = require('../models/chat_chatting');
