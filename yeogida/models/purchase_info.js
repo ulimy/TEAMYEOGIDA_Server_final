@@ -8,7 +8,7 @@ exports.info=(buyer_personpid)=>productpurchase.findAll({
   attributes:{exclude:['buyer_personpid','sold_productpid']},
   include:{
     model : productinfo,
-    attribute :['productpid', 'productname', 'formerprice', 'productprice', 'productdate_s', 'productdate_e','productimage',' productaddress'],
+    attribute :['productpid', 'productname', 'formerprice', 'productprice', 'productdate_s', 'productdate_e','productimage','productaddress'],
     where: {personpid : buyer_personpid}
   }
 }).then((data)=>{
