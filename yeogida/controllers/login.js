@@ -7,10 +7,8 @@ var jwt = require('jsonwebtoken');
 router.post('/',function(req,res,next){
   var loginModel = require('../models/login');
 
-  console.log("post in");
-
   // 로그인 정보 받아오기
-  var login_info = req.query;
+  var login_info = req.body;
 
   // 로그인정보 저장하고 personpid 가져오기
   loginModel.login(login_info)
