@@ -1,10 +1,12 @@
 var Sequelize = require('Sequelize');
 
 var sequelize = new Sequelize('','','',
+
   {
     'host' : '',
     'dialect' : 'mysql'
-});
+}
+);
 
 var profile=sequelize.define('profile',{
   personpid: {
@@ -40,8 +42,14 @@ var productinfo=sequelize.define('productinfo', {
   productaddress : Sequelize.STRING,
   formerprice: Sequelize.INTEGER,
   productprice :Sequelize.INTEGER,
-  producthit: Sequelize.INTEGER,
-  checker : Sequelize.BOOLEAN,
+  producthit: {
+    type : Sequelize.INTEGER,
+    defaultValue : 0
+  },
+  checker : {
+  type : Sequelize.BOOLEAN,
+  defaultValue : false
+  },
   personpid: Sequelize.INTEGER,
   text:Sequelize.TEXT,
   productphone:Sequelize.INTEGER,
@@ -110,8 +118,9 @@ var productsell=sequelize.define('productsell', {
     references : profile.personpid
   },
   checker : {
-    type: Sequelize.BOOLEAN
-  }
+  type : Sequelize.BOOLEAN,
+  defaultValue : false
+  },
 },{
   timestamps : false,
   tableName : productsell,
