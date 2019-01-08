@@ -2,10 +2,10 @@ var Sequelize = require('Sequelize');
 
 var sequelize = new Sequelize('','','',
 
-  {
-    'host' : '',
-    'dialect' : 'mysql'
-}
+    {
+      'host' : '',
+      'dialect' : 'mysql'
+  }
 );
 
 var profile=sequelize.define('profile',{
@@ -149,6 +149,50 @@ var productpurchase=sequelize.define('productpurchase', {
   collate: 'utf8_unicode_ci'
 });
 
+var chatroom=sequelize.define('chatroom',{
+  roompid :{
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  personpid : {
+    type : Sequelize.INTEGER,
+    references : profile.personpid
+  },
+  productpid : {
+    type : Sequelize.INTEGER,
+    references : productinfo.productpid
+  }
+},{
+  timestamps : false,
+  tableName : chatroom,
+  charset: 'utf8',
+  collate: 'utf8_unicode_ci'
+});
+
+var chatmessage=sequelize.define('chatmessage',{
+  idx : {
+    type : Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement : true
+  },
+  roompid : {
+    type: Sequelize.INTEGER,
+    references: chatroom.roompid
+  },
+  personpid: {
+    type: Sequelize.INTEGER,
+    references: profile.personpid
+  },
+  message : {type: Sequelize.STRING},
+  date : {type: Sequelize.DATE}
+},{
+  timestamps : false,
+  tableName : chatmessage,
+  charset: 'utf8',
+  collate: 'utf8_unicode_ci'
+});
+
 profile.sync();
 productinfo.sync();
 productinfo.sync();
@@ -156,6 +200,8 @@ productchoice.sync();
 productsearch.sync();
 productsell.sync();
 productpurchase.sync();
+chatroom.sync();
+chatmessage.sync();
 
 module.exports={
   profile:profile,
@@ -163,5 +209,7 @@ module.exports={
   productchoice : productchoice,
   productsearch : productsearch,
   productsell : productsell,
-  productpurchase : productpurchase
+  productpurchase : productpurchase,
+  chatroom : chatroom,
+  chatmessage : chatmessage
 };
