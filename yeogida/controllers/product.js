@@ -8,7 +8,7 @@ var upload = multer();
 // var imagez='';
 
 // 제품 상세조회
-router.post('/info',upload.fields([]),function(req,res){
+router.post('/info',function(req,res){
   var infoModel = require('../models/product_info');
 
   // 최근 본 상품 추가
@@ -74,7 +74,7 @@ router.post('/update',upload.fields([]),function(req,res){
 });
 
 // 제품 삭제
-router.get('/delete',upload.fields([]),function(req,res){
+router.get('/delete',function(req,res){
   var deletedModel = require('../models/product_delete');
   deletedModel.delete(req.query.productpid).then(()=>{
     res.json({message:'success'});
