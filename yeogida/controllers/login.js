@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
-// var multer = require('multer');
-// var upload = multer();
 
 router.post('/',function(req,res,next){
   var loginModel = require('../models/login');
