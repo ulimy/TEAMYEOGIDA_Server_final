@@ -7,13 +7,12 @@ exports.info=(search_personpid)=>productsearch.findAll({
   attributes : {exclude : ['idx','search_personpid','search_productpid']},
   include:{
     model : productinfo,
-    attribute : ['productpid', 'productname', 'formerprice', 'productprice', 'productdate_s', 'productdate_e','productimage','productaddress']
+    attributes : ['productpid', 'productname', 'formerprice', 'productprice', 'productdate_s', 'productdate_e','productimage','productaddress']
   },
-  where:{search_personpid:search_personpid}
 }).then((data)=>{
   var result=[];
   for(var i=0;i<data.length;i++){
-    result[i]=data[i].dataValues;
+    result[i]=data[i].dataValues.productinfo;
   }
   return result;
 });

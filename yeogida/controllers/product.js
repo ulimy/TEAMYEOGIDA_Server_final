@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var client_id = '';
-var client_secret = '';
+// var client_id = '';
+// var client_secret = '';
 var multer = require('multer');
 var upload = multer();
 // var imageCtrl=require('./image');
@@ -11,18 +11,11 @@ var upload = multer();
 router.post('/info',function(req,res){
   var infoModel = require('../models/product_info');
 
-  // 최근 본 상품 추가
-  infoModel.insert_search(req.body);
-
-  // hit ++
-  infoModel.hit(req.body.productpid);
-
-  // 제품 정보 돌려주기
-  infoModel.info(req.body.productpid)
+  infoModel.info(req.body)
   .then((data)=>{
     res.json(data);
   });
-
+  
 });
 
 // 제품 등록
