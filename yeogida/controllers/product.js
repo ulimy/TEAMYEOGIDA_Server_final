@@ -15,7 +15,7 @@ router.post('/info',function(req,res){
   .then((data)=>{
     res.json(data);
   });
-  
+
 });
 
 // 제품 등록
