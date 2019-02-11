@@ -1,24 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var client_id = '';
-var client_secret = '';
+// var client_id = '';
+// var client_secret = '';
 var multer = require('multer');
 var upload = multer();
-var imageCtrl=require('./image');
-var imagez='';
+// var imageCtrl=require('./image');
+// var imagez='';
 
 // 제품 상세조회
-router.post('/info',upload.fields([]),function(req,res){
+router.post('/info',function(req,res){
   var infoModel = require('../models/product_info');
 
-  // 최근 본 상품 추가
-  infoModel.insert_search(req.body);
-
-  // hit ++
-  infoModel.hit(req.body.productpid);
-
-  // 제품 정보 돌려주기
-  infoModel.info(req.body.productpid)
+  infoModel.info(req.body)
   .then((data)=>{
     res.json(data);
   });
@@ -26,12 +19,13 @@ router.post('/info',upload.fields([]),function(req,res){
 });
 
 // 제품 등록
-router.post('/register',imageCtrl.uploadSingle,function(req,res){
+//router.post('/register',imageCtrl.uploadSingle,function(req,res){
+router.post('/register',upload.fields([]),function(req,res){
   var registerModel = require('../models/product_register');
   var map=require('../api/map_api');
   var register_info=req.body;
-  imagez=req.file.location;
-  register_info.productimage = imagez;
+  // imagez=req.file.location;
+  // register_info.productimage = imagez;
 
   // 좌표값 변환하여 productinfo 에 저장
   map.getPoint(register_info.productaddress).then(function(point){
@@ -51,12 +45,13 @@ router.post('/register',imageCtrl.uploadSingle,function(req,res){
 });
 
 // 제품 수정
-router.post('/update',imageCtrl.uploadSingle,function(req,res){
+// router.post('/update',imageCtrl.uploadSingle,function(req,res){
+router.post('/update',upload.fields([]),function(req,res){
   var updateModel = require('../models/product_update');
   var map=require('../api/map_api');
   var update_info=req.body;
-  imagez=req.file.location;
-  update_info.productimage = imagez;
+  // imagez=req.file.location;
+  // update_info.productimage = imagez;
 
   // 좌표값 변환하여 productinfo 에 저장
   map.getPoint(update_info.productaddress).then(function(point){
@@ -72,7 +67,7 @@ router.post('/update',imageCtrl.uploadSingle,function(req,res){
 });
 
 // 제품 삭제
-router.get('/delete',upload.fields([]),function(req,res){
+router.get('/delete',function(req,res){
   var deletedModel = require('../models/product_delete');
   deletedModel.delete(req.query.productpid).then(()=>{
     res.json({message:'success'});

@@ -1,18 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var multer=require("multer");
-var upload=multer();
 
 // 구매내역
-router.post('/info',upload.fields([]),function(req,res){
+router.post('/info',function(req,res){
   var purchaseinfoModel = require('../models/purchase_info');
-  var personpid=req.body.buyer_personpid;
 
-  purchaseinfoModel.info(personpid)
+  purchaseinfoModel.info(req.body)
   .then((data)=>{
       res.json(data);
     }).then((err)=>{
-      if (err) console.error(err);
+      if (err) throw(err);
     });
 });
 
