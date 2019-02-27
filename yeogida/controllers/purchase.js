@@ -8,9 +8,10 @@ router.post('/info',function(req,res){
   purchaseinfoModel.info(req.body)
   .then((data)=>{
       res.json(data);
-    }).then((err)=>{
-      if (err) throw(err);
-    });
+  })
+  .catch((err) =>{
+    res.json({message : "failed"});
+  });
 });
 
 module.exports = router;
