@@ -50,6 +50,10 @@ router.post('/message',function(req,res){
   messageModel.insert(message)
   .then(() => {
     res.json({message : "success"});
+  })
+  .catch(err => {
+    console.error(err);
+    res.json({message : "failed"});
   });
 });
 
@@ -60,6 +64,10 @@ router.post('/list/seller',function(req,res){
   chatlistModel.getlist_seller(req.body)
   .then((result)=>{
     res.json(result);
+  })
+  .catch(err => {
+    console.error(err);
+    res.json({message : "failed"});
   });
 });
 
@@ -70,6 +78,10 @@ router.post('/list/buyer',function(req,res){
   chatlistModel.getlist_buyer(req.body)
   .then((result)=>{
     res.json(result);
+  })
+  .catch(err => {
+    console.error(err);
+    res.json({message : "failed"});
   });
 });
 
