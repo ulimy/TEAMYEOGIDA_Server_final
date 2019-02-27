@@ -12,7 +12,11 @@ router.post('/frompurchase',function(req,res){
     // roompid로 메시지들 뽑아서 보내기
     chatinfoModel.getmessages(roompid)
     .then((result)=>{
-      res.json(result);
+      if (result==null){
+        res.json(roompid);
+      }else{
+        res.json(result);
+      }
     });
   });
 });
