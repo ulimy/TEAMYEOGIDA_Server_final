@@ -25,6 +25,10 @@ router.post('/',function(req,res,next){
      });
      res.json({
        personpid : personpid
+     })
+     .catch(err => {
+       console.error(err);
+       res.json({message : "failed"});
      });
    });
 });
