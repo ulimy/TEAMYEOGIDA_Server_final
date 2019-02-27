@@ -23,13 +23,11 @@ router.post('/',function(req,res,next){
        // 생성한 토큰 저장
        loginModel.savetoken(personpid,token);
      });
-     res.json({
-       personpid : personpid
-     })
-     .catch(err => {
-       console.error(err);
-       res.json({message : "failed"});
-     });
+     res.json({personpid : personpid})
+   })
+   .catch(err => {
+     console.error(err);
+     res.json({message : "failed"});
    });
 });
 
