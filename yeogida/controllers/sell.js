@@ -5,8 +5,12 @@ var router = express.Router();
 router.post('/mysell_info',function(req,res){
   var mysellModel = require("../models/sell_mysell_info");
 
-  mysellModel.info(req.body.seller_personpid).then((data)=>{
+  mysellModel.info(req.body.seller_personpid)
+  .then((data)=>{
     res.json(data);
+  })
+  .catch((err) =>{
+    res.json({message : "failed"});
   });
 });
 
@@ -14,8 +18,12 @@ router.post('/mysell_info',function(req,res){
 router.post('/sold_info',function(req,res){
   var soldModel = require("../models/sell_sold_info");
 
-  soldModel.info(req.body.seller_personpid).then((data)=>{
+  soldModel.info(req.body.seller_personpid)
+  .then((data)=>{
     res.json(data);
+  })
+  .catch((err) =>{
+    res.json({message : "failed"});
   });
 });
 

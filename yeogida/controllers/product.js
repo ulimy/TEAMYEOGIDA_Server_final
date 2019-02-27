@@ -14,6 +14,9 @@ router.post('/info',function(req,res){
   infoModel.info(req.body)
   .then((data)=>{
     res.json(data);
+  })
+  .catch((err) =>{
+    res.json({message : "failed"});
   });
 
 });
@@ -31,7 +34,6 @@ router.post('/register',upload.fields([]),function(req,res){
   map.getPoint(register_info.productaddress).then(function(point){
     register_info.productaddress_x = point[0];
     register_info.productaddress_y = point[1];
-    console.log(register_info);
     registerModel.register(register_info)
       .then((data)=>{
         // productsell에 추가
@@ -39,7 +41,11 @@ router.post('/register',upload.fields([]),function(req,res){
 
         // 성공
         res.json({message : "success"});
+      })
+      .catch((err) =>{
+        res.json({message : "failed"});
       });
+
   });
 
 });
@@ -50,6 +56,8 @@ router.post('/update',upload.fields([]),function(req,res){
   var updateModel = require('../models/product_update');
   var map=require('../api/map_api');
   var update_info=req.body;
+  console.log("update info : ");
+  console.log(update_info);
   // imagez=req.file.location;
   // update_info.productimage = imagez;
 
@@ -59,9 +67,14 @@ router.post('/update',upload.fields([]),function(req,res){
     update_info.productaddress_y = point[1];
     var productpid = update_info.productpid;
     delete update_info.productpid;
+    console.log("update info2 : ");
+    console.log(update_info);
     updateModel.update(update_info,productpid).then(()=>{
       // 성공
       res.json({message : "success"});
+    })
+    .catch((err) =>{
+      res.json({message : "failed"});
     });
    });
 });
@@ -69,8 +82,13 @@ router.post('/update',upload.fields([]),function(req,res){
 // 제품 삭제
 router.get('/delete',function(req,res){
   var deletedModel = require('../models/product_delete');
-  deletedModel.delete(req.query.productpid).then(()=>{
+
+  deletedModel.delete(req.query.productpid)
+  .then(()=>{
     res.json({message:'success'});
+  })
+  .catch((err) =>{
+    res.json({message : "failed"});
   });
 });
 
