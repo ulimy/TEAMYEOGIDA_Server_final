@@ -4,28 +4,15 @@ var router = express.Router();
 // 채팅방 생성 및 채팅 내용 조회 - 구매하기 화면에서 채팅하기
 router.post('/frompurchase',function(req,res){
   var chatroomModel = require('../models/chat_chatroom');
-  var chatinfoModel = require('../models/chat_info');
-
   // 채팅방이 없다면 만들고, roompid return
   chatroomModel.getroompid(req.body)
   .then((roompid)=>{
-    // roompid로 메시지들 뽑아서 보내기
-    chatinfoModel.getmessages(roompid)
-    .then((result)=>{
-      var output =[];
-      output[0] = roompid;
-      if (result==null){
-        res.json(output);
-      }else{
-        output = output.concat(result);
-        res.json(output);
-      }
-    });
+    res.json(roompid);
   });
 });
 
 // 채팅방 생성 및 채팅 내용 조회  - 채팅 목록에서 채팅하기
-router.post('/fromlist',function(req,res){
+router.post('/messagelist',function(req,res){
   var chatinfoModel = require('../models/chat_info');
   // roompid로 메시지들 뽑아서 보내기
   chatinfoModel.getmessages(req.body)

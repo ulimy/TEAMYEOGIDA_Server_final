@@ -2,7 +2,7 @@
 var chatmessage = require('../config/database').chatmessage;
 
 exports.getmessages = (roompid)=> chatmessage.findAll({
-  attributes : {exclude : ['idx']},
+  attributes : {exclude : ['idx','roompid']},
   where : roompid
 }).then((result)=>{
   return result;
