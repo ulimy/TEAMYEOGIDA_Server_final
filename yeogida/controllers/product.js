@@ -86,23 +86,22 @@ router.get('/delete',function(req,res){
   deletedModel.delete(req.query.productpid)
   .then(()=>{
     res.json({message:'success'});
-  })
-  .catch((err) =>{
+  }).catch((err) =>{
     res.json({message : "failed"});
   });
 });
 
 // 구매 확정
-router.post('/complete',upload.fields([]),function(req,res){
+router.post('/complete',function(req,res){
   var completeModel = require('../models/product_complete');
-  var productpid = req.body.productpid;
-  var personpid = req.body.personpid;
 
-  completeModel.update_info(productpid);
-  completeModel.update_sell(productpid);
-  completeModel.insert_purchase(productpid,personpid);
-
-  res.json({message:'success'});
+  completeModel.update_info(req.body.roompid)
+  .then(()=>{
+    res.json({message:'success'});
+  }).catch((err) =>{
+    console.log(err);
+    res.json({message : "failed"});
+  });
 });
 
 module.exports = router;

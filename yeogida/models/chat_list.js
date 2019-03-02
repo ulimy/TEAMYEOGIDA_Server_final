@@ -15,7 +15,7 @@ exports.getlist_seller = (personpid) => productinfo.findAll({
   for (var i=0;i<data.length;i++){
     var temp = data[i].dataValues;
     if (temp.chatroom != null){
-        result[i] = {roompid : temp.chatroom.roompid, productname : temp.productname};
+      result[i] = {roompid : temp.chatroom.roompid, productname : temp.productname};
     }
   }
   return result;
