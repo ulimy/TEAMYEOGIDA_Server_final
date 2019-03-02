@@ -99,7 +99,6 @@ router.post('/complete',function(req,res){
   .then(()=>{
     res.json({message:'success'});
   }).catch((err) =>{
-    console.log(err);
     res.json({message : "failed"});
   });
 });
