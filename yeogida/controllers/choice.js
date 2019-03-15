@@ -18,12 +18,12 @@ router.post('/info',function(req,res){
 router.post('/register',function(req,res){
   var registerModel = require('../models/choice_register');
   var register_info=req.body;
-  registerModel.register(register_info);
-  res.json({message:"success"})
-  .catch(err => {
-    console.error(err);
+  registerModel.register(register_info)
+  .then(()=>{
+    res.json({message:"success"})
+  }).catch(err => {
     res.json({message : "failed"});
-  });
+  })
 });
 
 //찜한 상품 productchoice에서 삭제하기
@@ -35,7 +35,6 @@ router.post('/delete',function(req,res){
     res.json({message:"success"});
   })
   .catch(err => {
-    console.error(err);
     res.json({message : "failed"});
   });
 });
