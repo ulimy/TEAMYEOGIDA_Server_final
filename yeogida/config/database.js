@@ -1,10 +1,10 @@
 var Sequelize = require('Sequelize');
 
-var sequelize = new Sequelize('','','',
+var sequelize = new Sequelize('yeogida','admin','smulookie123*',
 
     {
-      'host' : '',
-      'dialect' : 'mysql'
+      'host' : 'yeogida.cdsjvkz1an0k.ap-northeast-2.rds.amazonaws.com',
+      'dialect' : 'mysql',
   }
 );
 
