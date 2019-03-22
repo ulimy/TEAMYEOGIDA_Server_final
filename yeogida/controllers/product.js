@@ -27,13 +27,14 @@ router.post('/register',imageCtrl.uploadSingle,function(req,res){
   var registerModel = require('../models/product_register');
   var map=require('../api/map_api');
   var register_info=req.body;
-  imagez=req.file.location;
-  register_info.productimage = imagez;
 
   // 좌표값 변환하여 productinfo 에 저장
-  map.getPoint(register_info.productaddress).then(function(point){
+  map.getPoint(register_info.productaddress)
+  .then((point)=>{
     register_info.productaddress_x = point[0];
     register_info.productaddress_y = point[1];
+    imagez=req.file.location;
+    register_info.productimage = imagez;
     registerModel.register(register_info)
       .then((data)=>{
         // productsell에 추가
@@ -41,8 +42,8 @@ router.post('/register',imageCtrl.uploadSingle,function(req,res){
 
         // 성공
         res.json({message : "success"});
-      })
-      .catch((err) =>{
+
+      }).catch((err) =>{
         res.json({message : "failed"});
       });
 
@@ -56,13 +57,12 @@ router.post('/update',imageCtrl.uploadSingle,function(req,res){
   var updateModel = require('../models/product_update');
   var map=require('../api/map_api');
   var update_info=req.body;
-  console.log("update info : ");
-  console.log(update_info);
   imagez=req.file.location;
   update_info.productimage = imagez;
 
   // 좌표값 변환하여 productinfo 에 저장
-  map.getPoint(update_info.productaddress).then(function(point){
+  map.getPoint(update_info.productaddress)
+  .then((point)=>{
     update_info.productaddress_x = point[0];
     update_info.productaddress_y = point[1];
     var productpid = update_info.productpid;
@@ -76,7 +76,7 @@ router.post('/update',imageCtrl.uploadSingle,function(req,res){
     .catch((err) =>{
       res.json({message : "failed"});
     });
-   });
+  });
 });
 
 // 제품 삭제
@@ -87,7 +87,7 @@ router.get('/delete',function(req,res){
   .then(()=>{
     res.json({message:'success'});
   }).catch((err) =>{
-    res.json({message : "failed"});
+    res.json({message : 'failed'});
   });
 });
 
