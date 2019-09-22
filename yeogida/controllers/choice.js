@@ -8,8 +8,8 @@ router.post('/info',function(req,res){
   infoModel.info(req.body)
     .then((data)=>{
       res.json(data);
-    }).then((err)=>{
-      if (err) { console.error(err) };
+    }).catch(err=>{
+      res.json({message : "failed"});
     });
 
   });
@@ -18,8 +18,12 @@ router.post('/info',function(req,res){
 router.post('/register',function(req,res){
   var registerModel = require('../models/choice_register');
   var register_info=req.body;
-  registerModel.register(register_info);
-  res.json({message:"success"});
+  registerModel.register(register_info)
+  .then(()=>{
+    res.json({message:"success"})
+  }).catch(err => {
+    res.json({message : "failed"});
+  })
 });
 
 //찜한 상품 productchoice에서 삭제하기
@@ -29,6 +33,9 @@ router.post('/delete',function(req,res){
   deletedModel.delete(deleted_info)
   .then(()=>{
     res.json({message:"success"});
+  })
+  .catch(err => {
+    res.json({message : "failed"});
   });
 });
 

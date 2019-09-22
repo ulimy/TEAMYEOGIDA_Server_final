@@ -4,21 +4,15 @@ var router = express.Router();
 // 채팅방 생성 및 채팅 내용 조회 - 구매하기 화면에서 채팅하기
 router.post('/frompurchase',function(req,res){
   var chatroomModel = require('../models/chat_chatroom');
-  var chatinfoModel = require('../models/chat_info');
-
   // 채팅방이 없다면 만들고, roompid return
   chatroomModel.getroompid(req.body)
   .then((roompid)=>{
-    // roompid로 메시지들 뽑아서 보내기
-    chatinfoModel.getmessages(roompid)
-    .then((result)=>{
-      res.json(result);
-    });
+    res.json(roompid);
   });
 });
 
 // 채팅방 생성 및 채팅 내용 조회  - 채팅 목록에서 채팅하기
-router.post('/fromlist',function(req,res){
+router.post('/messagelist',function(req,res){
   var chatinfoModel = require('../models/chat_info');
   // roompid로 메시지들 뽑아서 보내기
   chatinfoModel.getmessages(req.body)
@@ -46,6 +40,10 @@ router.post('/message',function(req,res){
   messageModel.insert(message)
   .then(() => {
     res.json({message : "success"});
+  })
+  .catch(err => {
+    console.error(err);
+    res.json({message : "failed"});
   });
 });
 
@@ -56,6 +54,10 @@ router.post('/list/seller',function(req,res){
   chatlistModel.getlist_seller(req.body)
   .then((result)=>{
     res.json(result);
+  })
+  .catch(err => {
+    console.error(err);
+    res.json({message : "failed"});
   });
 });
 
@@ -66,6 +68,10 @@ router.post('/list/buyer',function(req,res){
   chatlistModel.getlist_buyer(req.body)
   .then((result)=>{
     res.json(result);
+  })
+  .catch(err => {
+    console.error(err);
+    res.json({message : "failed"});
   });
 });
 

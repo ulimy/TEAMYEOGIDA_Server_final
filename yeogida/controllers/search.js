@@ -8,9 +8,10 @@ router.post('/info',function(req,res){
   infoModel.info(personpid)
   .then((data)=>{
       res.json(data);
-    }).then((err)=>{
-      if (err) console.error(err);
-    });
+  })
+  .catch((err) =>{
+    res.json({message : "failed"});
+  });
 });
 
 module.exports = router;
