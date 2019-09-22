@@ -28,26 +28,38 @@ router.post('/register',imageCtrl.uploadSingle,function(req,res){
   var map=require('../api/map_api');
   var register_info=req.body;
 
+  console.log(register_info.productimage);
+  imagez=req.file.location;
+  register_info.productimage = imagez;
+
+  registerModel.register(register_info).
+    then((data) =>{
+       registerModel.insert_sell(data);
+       res.json({message : "success"});
+    }).catch((err)=>{
+      res.json({message : "failed"});
+    })
+
   // 좌표값 변환하여 productinfo 에 저장
-  map.getPoint(register_info.productaddress)
-  .then((point)=>{
-    register_info.productaddress_x = point[0];
-    register_info.productaddress_y = point[1];
-    imagez=req.file.location;
-    register_info.productimage = imagez;
-    registerModel.register(register_info)
-      .then((data)=>{
-        // productsell에 추가
-        registerModel.insert_sell(data);
-
-        // 성공
-        res.json({message : "success"});
-
-      }).catch((err) =>{
-        res.json({message : "failed"});
-      });
-
-  });
+  // map.getPoint(register_info.productaddress)
+  // .then((point)=>{
+  //   register_info.productaddress_x = point[0];
+  //   register_info.productaddress_y = point[1];
+  //   imagez=req.file.location;
+  //   register_info.productimage = imagez;
+  //   registerModel.register(register_info)
+  //     .then((data)=>{
+  //       // productsell에 추가
+  //       registerModel.insert_sell(data);
+  //
+  //       // 성공
+  //       res.json({message : "success"});
+  //
+  //     }).catch((err) =>{
+  //       res.json({message : "failed"});
+  //     });
+  //
+  // });
 
 });
 
